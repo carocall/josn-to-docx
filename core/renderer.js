@@ -113,7 +113,9 @@ class DocxRenderer {
     const doc = new Document({
       sections: this._sections,
       styles: {
-        paragraphStyles: this.styleEngine.toDocxStyles(),
+        // 使用 importedStyles 注入预构建的 StyleForParagraph 实例，
+        // 以支持 w:firstLineChars（docx.js 标准 paragraphStyles 不支持）
+        importedStyles: this.styleEngine.toDocxStyles(),
       },
       features: {
         // 打开文档时提示更新域（TOC）

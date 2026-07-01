@@ -5,20 +5,29 @@
  *
  * 职责：
  *   1. 加载并校验 style.json
- *   2. 将每个样式定义转换为 docx.js 的 IParagraphStyleOptions
+ *   2. 将每个样式定义转换为 docx.js 的 StyleForParagraph 实例
  *   3. 提供 getStyle / requireStyle / hasStyle 查询接口（严格模式）
  *
- * 说明：
- *   - docx.js 的 IIndentAttributesProperties 不支持 firstLineChars，
- *     这里按字号换算为等价的 firstLine（twips）：firstLine = (chars/100) * fontSize * 20
- *   - docx.js 的段落样式 paragraph 配置不支持 shading（背景色），
- *     因此 background_color 不在样式中输出，由 CodeHandler 在段落上直接设置
+ * 关于 firstLineChars：
+ *   docx.js 的 Indent 类不支持 w:firstLineChars 属性（只支持 w:firstLine）。
+ *   为与 Python 原版行为一致（按字符数动态缩进，Word 根据字号/字体自适应），
+ *   这里通过自定义 XmlComponent 直接写 <w:ind w:firstLineChars="N"/>，
+ *   并通过 importedStyles（而非 paragraphStyles）注入预构建的 StyleForParagraph。
+ *
+ * 关于 background_color：
+ *   docx.js 的段落样式 paragraph 配置不支持 shading（背景色），
+ *   因此 background_color 不在样式中输出，由 CodeHandler 在段落上直接设置。
  */
 
 const fs = require("fs");
 const path = require("path");
-const { AlignmentType, LineRuleType } = require("docx");
+const {
+  AlignmentType,
+  LineRuleType,
+  StyleForParagraph,
+} = require("docx");
 const { SpacingHelper, TWIPS_PER_PT } = require("./utils/spacing");
+const { FirstLineCharsIndent } = require("./utils/indent");
 
 const TWIPS_PER_CM = 1440 / 2.54; // 1 英寸 = 1440 twips，1 cm = 1440/2.54
 const LINE_SINGLE = 240; // docx.js 行距倍数：240 = 单倍
@@ -100,20 +109,62 @@ class StyleEngine {
     return this.styles.hasOwnProperty(styleName);
   }
 
-  /** 转换为 docx.js 的 paragraphStyles 数组，用于 Document.styles */
+  /**
+   * 构建所有样式为 StyleForParagraph 实例数组。
+   * 返回值用于 Document.styles.importedStyles（而非 paragraphStyles），
+   * 以便注入自定义的 w:firstLineChars 缩进。
+   */
   toDocxStyles() {
     return Object.entries(this.styles).map(([name, props]) => {
       const id = this._idMap[name];
-      return {
+      const paragraphOpts = this._buildParagraph(props);
+
+      // 预构建 StyleForParagraph（indent 不走标准 options，由自定义 Indent 注入）
+      const style = new StyleForParagraph({
         id,
         name,
         basedOn: "Normal",
         next: "Normal",
         quickFormat: true,
         run: this._buildRun(props),
-        paragraph: this._buildParagraph(props),
-      };
+        paragraph: paragraphOpts,
+      });
+
+      // 注入自定义 w:ind（支持 firstLineChars）
+      const indAttrs = this._buildIndentAttrs(props);
+      if (Object.keys(indAttrs).length > 0) {
+        const pp = this._findParagraphProperties(style);
+        if (pp) {
+          pp.root.push(new FirstLineCharsIndent(indAttrs));
+        }
+      }
+
+      return style;
     });
+  }
+
+  /** 在 StyleForParagraph 的 root 中查找 ParagraphProperties 节点 */
+  _findParagraphProperties(style) {
+    return style.root.find(
+      (r) => r && r.constructor && r.constructor.name === "ParagraphProperties"
+    );
+  }
+
+  /**
+   * 构建 w:ind 的属性集合，与 Python 版保持一致：
+   *   - firstLineChars -> w:firstLineChars="200"（按字符数缩进，Word 自适应）
+   *   - left_indent_cm -> w:left="twips"
+   * 两者同时存在时合并到同一个 w:ind 元素中。
+   */
+  _buildIndentAttrs(props) {
+    const attrs = {};
+    if (props.firstLineChars) {
+      attrs["w:firstLineChars"] = String(parseInt(props.firstLineChars, 10));
+    }
+    if (props.left_indent_cm != null) {
+      attrs["w:left"] = String(Math.round(props.left_indent_cm * TWIPS_PER_CM));
+    }
+    return attrs;
   }
 
   _buildRun(props) {
@@ -155,18 +206,8 @@ class StyleEngine {
       }
     }
 
-    // 缩进（firstLineChars 换算为 firstLine；left_indent_cm 换算为 left）
-    const indent = {};
-    if (props.firstLineChars) {
-      const fs = props.font_size != null ? props.font_size : 12;
-      indent.firstLine = Math.round((props.firstLineChars / 100) * fs * TWIPS_PER_PT);
-    }
-    if (props.left_indent_cm != null) {
-      indent.left = Math.round(props.left_indent_cm * TWIPS_PER_CM);
-    }
-    if (Object.keys(indent).length > 0) {
-      paragraph.indent = indent;
-    }
+    // 注意：firstLineChars 和 left_indent_cm 不在这里处理，
+    // 由 _buildIndentAttrs + FirstLineCharsIndent 注入（见 toDocxStyles）。
 
     // outline_level（让 Word 识别为标题结构，用于目录生成）
     if (props.outline_level != null) {
