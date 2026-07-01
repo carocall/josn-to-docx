@@ -1,0 +1,505 @@
+{
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 1,
+      "style": "inner_heading1",
+      "runs": [
+        {
+          "text": "摘要"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "这个一个让ai更稳定生成word文档的解决方案"
+        }
+      ]
+    },
+    {
+      "type": "page-break"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "style": "inner_heading1",
+      "runs": [
+        {
+          "text": "Abstract"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "this is a abstract"
+        }
+      ]
+    },
+    {
+      "type": "page-break"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "style": "inner_heading1",
+      "runs": [
+        {
+          "text": "目录"
+        }
+      ]
+    },
+    {
+      "type": "toc",
+      "levels": [
+        1,
+        2,
+        3
+      ],
+      "style_level_one": "inner_toc1",
+      "style_level_two": "inner_toc2",
+      "style_level_three": "inner_toc3"
+    },
+    {
+      "type": "page-break"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "style": "inner_heading1",
+      "runs": [
+        {
+          "text": "1 项目概述"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "这是使用新结构书写的正文段落。JSON格式更加清晰，样式由 style 字段指定，文字内容放在 runs 数组中。"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "style": "inner_image",
+      "src": "images/prj_logo.png"
+    },
+    {
+      "type": "text",
+      "style": "inner_figcaption",
+      "runs": [
+        {
+          "text": "图1-1 项目Logo"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "style": "inner_heading2",
+      "runs": [
+        {
+          "text": "1.1 表格示例"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "表格的样式配置（表头样式、表内样式、边框类型）现在都放在内容JSON中，而不是style.json里。这样每个表格可以独立配置。"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "style": "inner_tablecaption",
+      "runs": [
+        {
+          "text": "表1-1 功能支持列表"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "style": "inner_body",
+      "rows": 4,
+      "cols": 3,
+      "cells": [
+        [
+          "功能名称",
+          "支持情况",
+          "说明"
+        ],
+        [
+          "段落转换",
+          "是",
+          "使用 text 类型和命名样式"
+        ],
+        [
+          "图片插入",
+          "是",
+          "使用 image 类型和图片样式"
+        ],
+        [
+          "表格生成",
+          "是",
+          "使用 table 类型，样式在内容中配置"
+        ]
+      ],
+      "header_style": "inner_tableheader",
+      "body_style": "inner_tablebody",
+      "border": "three_line",
+      "space_after": {
+        "units": "pt",
+        "value": 12
+      }
+    },
+    {
+      "type": "page-break"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "style": "inner_heading1",
+      "runs": [
+        {
+          "text": "2 内联样式演示"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "下面展示 "
+        },
+        {
+          "text": "粗体",
+          "bold": true
+        },
+        {
+          "text": "、"
+        },
+        {
+          "text": "斜体",
+          "italic": true
+        },
+        {
+          "text": "、"
+        },
+        {
+          "text": "下划线",
+          "underline": true
+        },
+        {
+          "text": " 等内联样式。"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "还可以使用 "
+        },
+        {
+          "text": "上标",
+          "superscript": true
+        },
+        {
+          "text": " 和 "
+        },
+        {
+          "text": "下标",
+          "subscript": true
+        },
+        {
+          "text": "，以及 "
+        },
+        {
+          "text": "红色文字",
+          "color": "FF0000"
+        },
+        {
+          "text": " 和 "
+        },
+        {
+          "text": "高亮背景",
+          "highlight": "FFFF00"
+        },
+        {
+          "text": "。"
+        }
+      ]
+    },
+    {
+      "type": "page-break"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "style": "inner_heading1",
+      "runs": [
+        {
+          "text": "3 目录与标题演示"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "style": "inner_heading2",
+      "id": "toc-demo",
+      "runs": [
+        {
+          "text": "3.1 这是一个二级标题"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "heading 类型会自动设置 outlineLevel，Word 可以识别为标题结构，用于生成目录。"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "style": "inner_heading3",
+      "runs": [
+        {
+          "text": "3.1.1 这是一个三级标题"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "支持 1/2/3/4 级标题，由 level 字段控制。"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "style": "inner_heading2",
+      "runs": [
+        {
+          "text": "3.2 严格模式说明"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "严格模式下，所有样式必须在 style.json 中定义，否则会报错终止转换。"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "style": "inner_body",
+      "rows": 3,
+      "cols": 2,
+      "cells": [
+        [
+          "表头1",
+          "表头2"
+        ],
+        [
+          "数据1",
+          "数据2"
+        ],
+        [
+          "数据3",
+          "数据4"
+        ]
+      ],
+      "header_style": "inner_tableheader",
+      "body_style": "inner_tablebody",
+      "border": "grid",
+      "space_after": {
+        "units": "pt",
+        "value": 12
+      }
+    },
+    {
+      "type": "image",
+      "style": "inner_image",
+      "src": "images/prj_logo.png"
+    },
+    {
+      "type": "page-break"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "style": "inner_heading1",
+      "runs": [
+        {
+          "text": "4 代码块演示"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "代码块是独立的 block 类型，使用等宽字体、灰背景、缩进，保留原始换行和空格。"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "language": "python",
+      "style": "inner_code",
+      "content": "def hello():\n    print('hello world')\n    for i in range(10):\n        print(i)"
+    },
+    {
+      "type": "page-break"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "style": "inner_heading1",
+      "runs": [
+        {
+          "text": "5 公式演示"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "formula 块支持 LaTeX 语法，渲染为 Word 原生数学公式（OMML），可在 Word 中直接编辑。"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "下面是质能方程："
+        }
+      ]
+    },
+    {
+      "type": "formula",
+      "style": "inner_formula",
+      "latex": "E = mc^2",
+      "display": true
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "下面是二次方程求根公式："
+        }
+      ]
+    },
+    {
+      "type": "formula",
+      "style": "inner_formula",
+      "latex": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+      "display": true
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "下面是高斯积分："
+        }
+      ]
+    },
+    {
+      "type": "formula",
+      "style": "inner_formula",
+      "latex": "\\int_{-\\infty}^{\\infty} e^{-x^2} \\, dx = \\sqrt{\\pi}",
+      "display": true
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "下面是欧拉公式："
+        }
+      ]
+    },
+    {
+      "type": "formula",
+      "style": "inner_formula",
+      "latex": "e^{i\\pi} + 1 = 0",
+      "display": true
+    },
+    {
+      "type": "page-break"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "style": "inner_heading1",
+      "runs": [
+        {
+          "text": "6 换页与分节演示"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "page-break 支持三种类型：page（分页符）、column（分栏符）、line（行内换行）。"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "section-break 支持四种类型：nextPage（下一页）、continuous（连续）、evenPage（偶数页）、oddPage（奇数页）。"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "style": "inner_body",
+      "runs": [
+        {
+          "text": "不指定 break_type 时，默认值分别为 page 和 nextPage，兼容旧版 JSON 格式。"
+        }
+      ]
+    },
+    {
+      "type": "section-break",
+      "break_type": "nextPage"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "ai-docx-engine",
+  "version": "1.0.0",
+  "description": "将自定义JSON内容转换为Word文档，支持通过style.json自定义样式（JS版）",
+  "main": "core/converter.js",
+  "bin": {
+    "ai-docx-engine": "core/converter.js"
+  },
+  "scripts": {
+    "convert": "node core/converter.js",
+    "demo": "node core/converter.js template/content.json template/style.json template/outputs/output.docx"
+  },
+  "dependencies": {
+    "docx": "^8.5.0",
+    "fast-xml-parser": "^5.9.3",
+    "image-size": "^1.1.1",
+    "katex": "^0.16.9"
+  }
+}
