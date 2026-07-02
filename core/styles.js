@@ -199,7 +199,9 @@ class StyleEngine {
       const value = props.line_spacing.value != null ? props.line_spacing.value : 1.0;
       if (units === "pt") {
         paragraph.spacing.line = Math.round(value * TWIPS_PER_PT);
-        paragraph.spacing.lineRule = LineRuleType.EXACTLY;
+        // 使用 "exact" 与 python-docx 的 WD_LINE_SPACING.EXACTLY 保持一致，
+        // Word 会显示为"固定值 22 磅"；用 "exactly" 则 Word 会显示为倍数。
+        paragraph.spacing.lineRule = LineRuleType.EXACT;
       } else {
         paragraph.spacing.line = Math.round(value * LINE_SINGLE);
         paragraph.spacing.lineRule = LineRuleType.AUTO;
