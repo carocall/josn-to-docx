@@ -101,6 +101,7 @@
   },
   "inner_image": {
     "alignment": "center",
+    "line_spacing": {"units": "line", "value": 1},
     "space_before": {"units": "pt", "value": 12},
     "space_after": {"units": "pt", "value": 6}
   },
