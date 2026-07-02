@@ -3,7 +3,7 @@
     {
       "type": "heading",
       "level": 1,
-      "style": "inner_heading1",
+      "style": "Heading 1",
       "runs": [
         {
           "text": "摘要"
@@ -12,7 +12,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "这个一个让ai更稳定生成word文档的解决方案"
@@ -25,7 +25,7 @@
     {
       "type": "heading",
       "level": 1,
-      "style": "inner_heading1",
+      "style": "Heading 1",
       "runs": [
         {
           "text": "Abstract"
@@ -34,7 +34,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "this is a abstract"
@@ -47,7 +47,7 @@
     {
       "type": "heading",
       "level": 1,
-      "style": "inner_heading1",
+      "style": "Heading 1",
       "runs": [
         {
           "text": "目录"
@@ -61,9 +61,9 @@
         2,
         3
       ],
-      "style_level_one": "inner_toc1",
-      "style_level_two": "inner_toc2",
-      "style_level_three": "inner_toc3"
+      "style_level_one": "TOC 1",
+      "style_level_two": "TOC 2",
+      "style_level_three": "TOC 3"
     },
     {
       "type": "page-break"
@@ -71,7 +71,7 @@
     {
       "type": "heading",
       "level": 1,
-      "style": "inner_heading1",
+      "style": "Heading 1",
       "runs": [
         {
           "text": "1 项目概述"
@@ -80,7 +80,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "这是使用新结构书写的正文段落。JSON格式更加清晰，样式由 style 字段指定，文字内容放在 runs 数组中。"
@@ -104,7 +104,7 @@
     {
       "type": "heading",
       "level": 2,
-      "style": "inner_heading2",
+      "style": "Heading 2",
       "runs": [
         {
           "text": "1.1 表格示例"
@@ -113,7 +113,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "表格的样式配置（表头样式、表内样式、边框类型）现在都放在内容JSON中，而不是style.json里。这样每个表格可以独立配置。"
@@ -131,7 +131,7 @@
     },
     {
       "type": "table",
-      "style": "inner_body",
+      "style": "Normal",
       "rows": 4,
       "cols": 3,
       "cells": [
@@ -170,7 +170,7 @@
     {
       "type": "heading",
       "level": 1,
-      "style": "inner_heading1",
+      "style": "Heading 1",
       "runs": [
         {
           "text": "2 内联样式演示"
@@ -179,7 +179,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "下面展示 "
@@ -209,7 +209,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "还可以使用 "
@@ -250,7 +250,7 @@
     {
       "type": "heading",
       "level": 1,
-      "style": "inner_heading1",
+      "style": "Heading 1",
       "runs": [
         {
           "text": "3 目录与标题演示"
@@ -260,7 +260,7 @@
     {
       "type": "heading",
       "level": 2,
-      "style": "inner_heading2",
+      "style": "Heading 2",
       "id": "toc-demo",
       "runs": [
         {
@@ -270,7 +270,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "heading 类型会自动设置 outlineLevel，Word 可以识别为标题结构，用于生成目录。"
@@ -280,7 +280,7 @@
     {
       "type": "heading",
       "level": 3,
-      "style": "inner_heading3",
+      "style": "Heading 3",
       "runs": [
         {
           "text": "3.1.1 这是一个三级标题"
@@ -289,7 +289,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "支持 1/2/3/4 级标题，由 level 字段控制。"
@@ -299,7 +299,7 @@
     {
       "type": "heading",
       "level": 2,
-      "style": "inner_heading2",
+      "style": "Heading 2",
       "runs": [
         {
           "text": "3.2 严格模式说明"
@@ -308,7 +308,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "严格模式下，所有样式必须在 style.json 中定义，否则会报错终止转换。"
@@ -317,7 +317,7 @@
     },
     {
       "type": "table",
-      "style": "inner_body",
+      "style": "Normal",
       "rows": 3,
       "cols": 2,
       "cells": [
@@ -353,7 +353,7 @@
     {
       "type": "heading",
       "level": 1,
-      "style": "inner_heading1",
+      "style": "Heading 1",
       "runs": [
         {
           "text": "4 代码块演示"
@@ -362,7 +362,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "代码块是独立的 block 类型，使用等宽字体、灰背景、缩进，保留原始换行和空格。"
@@ -381,7 +381,7 @@
     {
       "type": "heading",
       "level": 1,
-      "style": "inner_heading1",
+      "style": "Heading 1",
       "runs": [
         {
           "text": "5 公式演示"
@@ -390,7 +390,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "formula 块支持 LaTeX 语法，渲染为 Word 原生数学公式（OMML），可在 Word 中直接编辑。"
@@ -399,7 +399,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "下面是质能方程："
@@ -414,7 +414,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "下面是二次方程求根公式："
@@ -429,7 +429,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "下面是高斯积分："
@@ -444,7 +444,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "下面是欧拉公式："
@@ -463,7 +463,7 @@
     {
       "type": "heading",
       "level": 1,
-      "style": "inner_heading1",
+      "style": "Heading 1",
       "runs": [
         {
           "text": "6 换页与分节演示"
@@ -472,7 +472,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "page-break 支持三种类型：page（分页符）、column（分栏符）、line（行内换行）。"
@@ -481,7 +481,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "section-break 支持四种类型：nextPage（下一页）、continuous（连续）、evenPage（偶数页）、oddPage（奇数页）。"
@@ -490,7 +490,7 @@
     },
     {
       "type": "text",
-      "style": "inner_body",
+      "style": "Normal",
       "runs": [
         {
           "text": "不指定 break_type 时，默认值分别为 page 和 nextPage，兼容旧版 JSON 格式。"

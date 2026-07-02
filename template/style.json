@@ -1,5 +1,5 @@
 {
-  "inner_heading1": {
+  "Heading 1": {
     "font_name": "Times New Roman",
     "font_name_east_asia": "黑体",
     "alignment": "center",
@@ -10,7 +10,7 @@
     "space_before": {"units": "pt", "value": 6},
     "space_after": {"units": "pt", "value": 12}
   },
-  "inner_heading2": {
+  "Heading 2": {
     "font_name": "Times New Roman",
     "font_name_east_asia": "黑体",
     "font_size": 18,
@@ -20,7 +20,7 @@
     "space_before": {"units": "pt", "value": 6},
     "space_after": {"units": "pt", "value": 10}
   },
-  "inner_heading3": {
+  "Heading 3": {
     "font_name": "Times New Roman",
     "font_name_east_asia": "黑体",
     "font_size": 16,
@@ -30,7 +30,7 @@
     "space_before": {"units": "pt", "value": 6},
     "space_after": {"units": "pt", "value": 8}
   },
-  "inner_heading4": {
+  "Heading 4": {
     "font_name": "Times New Roman",
     "font_name_east_asia": "黑体",
     "font_size": 14,
@@ -40,28 +40,28 @@
     "space_before": {"units": "pt", "value": 6},
     "space_after": {"units": "pt", "value": 6}
   },
-  "inner_body": {
+  "Normal": {
     "font_name": "Times New Roman",
     "font_name_east_asia": "宋体",
     "font_size": 12,
     "line_spacing": {"units": "pt", "value": 22},
     "firstLineChars": 200
   },
-  "inner_toc1": {
+  "TOC 1": {
     "font_name": "Times New Roman",
     "font_name_east_asia": "黑体",
     "font_size": 14,
     "line_spacing": {"units": "pt", "value": 18},
     "firstLineChars": 200
   },
-  "inner_toc2": {
+  "TOC 2": {
     "font_name": "Times New Roman",
     "font_name_east_asia": "宋体",
     "font_size": 12,
     "line_spacing": {"units": "pt", "value": 22},
     "firstLineChars": 200
   },
-  "inner_toc3": {
+  "TOC 3": {
     "font_name": "Times New Roman",
     "font_name_east_asia": "宋体",
     "font_size": 12,
