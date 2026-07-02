@@ -70,7 +70,7 @@
     "first_line_indent": {"units": "chars", "value": 2},
     "left_indent": {"units": "chars", "value": 4}
   },
-  "inner_figcaption": {
+  "figcaption": {
     "font_name": "Times New Roman",
     "font_name_east_asia": "楷体",
     "font_size": 10.5,
@@ -78,7 +78,7 @@
     "space_before": {"units": "pt", "value": 6},
     "space_after": {"units": "pt", "value": 12}
   },
-  "inner_tablecaption": {
+  "tablecaption": {
     "font_name": "Times New Roman",
     "font_name_east_asia": "楷体",
     "font_size": 12,
@@ -86,26 +86,26 @@
     "space_before": {"units": "pt", "value": 6},
     "space_after": {"units": "pt", "value": 12}
   },
-  "inner_tableheader": {
+  "tableheader": {
     "font_name": "Times New Roman",
     "font_name_east_asia": "宋体",
     "font_size": 10,
     "bold": true,
     "alignment": "center"
   },
-  "inner_tablebody": {
+  "tablebody": {
     "font_name": "Times New Roman",
     "font_name_east_asia": "宋体",
     "font_size": 10,
     "alignment": "center"
   },
-  "inner_image": {
+  "image": {
     "alignment": "center",
     "line_spacing": {"units": "line", "value": 1},
     "space_before": {"units": "pt", "value": 12},
     "space_after": {"units": "pt", "value": 6}
   },
-  "inner_code": {
+  "code": {
     "font_name": "Times New Roman",
     "font_name_east_asia": "宋体",
     "font_size": 12,
@@ -115,7 +115,7 @@
     "space_before": {"units": "pt", "value": 0},
     "space_after": {"units": "pt", "value": 0}
   },
-  "inner_formula": {
+  "formula": {
     "font_name": "Times New Roman",
     "font_name_east_asia": "宋体",
     "font_size": 12,

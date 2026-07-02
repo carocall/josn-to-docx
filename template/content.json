@@ -89,12 +89,12 @@
     },
     {
       "type": "image",
-      "style": "inner_image",
+      "style": "image",
       "src": "images/prj_logo.png"
     },
     {
       "type": "text",
-      "style": "inner_figcaption",
+      "style": "figcaption",
       "runs": [
         {
           "text": "图1-1 项目Logo"
@@ -122,7 +122,7 @@
     },
     {
       "type": "text",
-      "style": "inner_tablecaption",
+      "style": "tablecaption",
       "runs": [
         {
           "text": "表1-1 功能支持列表"
@@ -156,8 +156,8 @@
           "使用 table 类型，样式在内容中配置"
         ]
       ],
-      "header_style": "inner_tableheader",
-      "body_style": "inner_tablebody",
+      "header_style": "tableheader",
+      "body_style": "tablebody",
       "border": "three_line",
       "space_after": {
         "units": "pt",
@@ -334,8 +334,8 @@
           "数据4"
         ]
       ],
-      "header_style": "inner_tableheader",
-      "body_style": "inner_tablebody",
+      "header_style": "tableheader",
+      "body_style": "tablebody",
       "border": "grid",
       "space_after": {
         "units": "pt",
@@ -344,7 +344,7 @@
     },
     {
       "type": "image",
-      "style": "inner_image",
+      "style": "image",
       "src": "images/prj_logo.png"
     },
     {
@@ -372,7 +372,7 @@
     {
       "type": "code",
       "language": "python",
-      "style": "inner_code",
+      "style": "code",
       "content": "def hello():\n    print('hello world')\n    for i in range(10):\n        print(i)"
     },
     {
@@ -408,7 +408,7 @@
     },
     {
       "type": "formula",
-      "style": "inner_formula",
+      "style": "formula",
       "latex": "E = mc^2",
       "display": true
     },
@@ -423,7 +423,7 @@
     },
     {
       "type": "formula",
-      "style": "inner_formula",
+      "style": "formula",
       "latex": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
       "display": true
     },
@@ -438,7 +438,7 @@
     },
     {
       "type": "formula",
-      "style": "inner_formula",
+      "style": "formula",
       "latex": "\\int_{-\\infty}^{\\infty} e^{-x^2} \\, dx = \\sqrt{\\pi}",
       "display": true
     },
@@ -453,7 +453,7 @@
     },
     {
       "type": "formula",
-      "style": "inner_formula",
+      "style": "formula",
       "latex": "e^{i\\pi} + 1 = 0",
       "display": true
     },
