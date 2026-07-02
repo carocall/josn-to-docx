@@ -45,6 +45,7 @@ class ImageHandler extends BlockHandler {
 
     /** @type {import("docx").IParagraphOptions} */
     const paraOpts = {
+      style: this.styleEngine.getStyleId(block.style),
       alignment: ALIGN_MAP[style.alignment] || AlignmentType.CENTER,
       spacing: {
         before: SpacingHelper.toTwips(style.space_before, 0),
