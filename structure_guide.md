@@ -242,7 +242,33 @@
 | `header_style` | string | **是** | **表头行使用的样式名称，必须在 style.json 中定义** |
 | `body_style` | string | **是** | **表体行使用的样式名称，必须在 style.json 中定义** |
 | `border` | string | 否 | 边框样式：`"none"`、`"grid"`、`"three_line"`，默认 `"three_line"` |
+| `col_widths` | array | 否 | 列宽数组，单位 twips（1 英寸 = 1440 twips） |
 | `space_after` | object | 否 | 表格后间距 |
+
+### col_widths 列宽配置
+
+`col_widths` 是一个数字数组，长度应等于 `cols`。每个元素表示对应列的宽度（单位 twips）。
+
+常用宽度参考：
+- A4 纸宽度 ≈ 9072 twips（约 16cm）
+- 1cm ≈ 567 twips
+- 1 英寸 = 1440 twips
+
+示例：
+```json
+{
+  "type": "table",
+  "col_widths": [1500, 4500, 3000],
+  "rows": 2,
+  "cols": 3,
+  "cells": [
+    ["序号", "名称", "说明"],
+    ["1", "项目A", "这是一个示例"]
+  ]
+}
+```
+
+不指定 `col_widths` 时，所有列等宽。
 
 ### 边框样式说明
 

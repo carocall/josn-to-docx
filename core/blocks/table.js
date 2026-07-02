@@ -8,7 +8,8 @@
  *   - 表头行使用 header_style，其余行使用 body_style
  *   - 单元格段落清除 firstLine/hanging 缩进（与 Python 版一致）
  *   - 表级 borders 设为 nil，再按 row/cell 应用 cellBorders
- *   - 表格后追加空段落应用 space_after
+ *   - 支持 col_widths 配置列宽（单位 twips）
+ *   - 表格后间距通过 tblPr spacing 设置（不再使用空段落）
  */
 
 const {
@@ -66,39 +67,43 @@ class TableHandler extends BlockHandler {
       const cells = [];
       for (let j = 0; j < block.cols; j++) {
         const text = rowCells[j] != null ? String(rowCells[j]) : "";
-        cells.push(
-          new TableCell({
-            borders,
-            children: [
-              new Paragraph({
-                style: cellStyleId,
-                // 清除缩进（避免 firstLineChars 应用到表格）
-                indent: { firstLine: 0, hanging: 0, left: 0 },
-                children: [new TextRun({ text })],
-              }),
-            ],
-          })
-        );
+        const cellOpts = {
+          borders,
+          children: [
+            new Paragraph({
+              style: cellStyleId,
+              // 清除缩进（避免 firstLineChars 应用到表格）
+              indent: { firstLine: 0, hanging: 0, left: 0 },
+              children: [new TextRun({ text })],
+            }),
+          ],
+        };
+
+        // 设置列宽（单位 twips）
+        if (block.col_widths && block.col_widths[j] != null) {
+          cellOpts.width = { size: block.col_widths[j], type: WidthType.DXA };
+        }
+
+        cells.push(new TableCell(cellOpts));
       }
       rows.push(new TableRow({ children: cells }));
     }
 
-    const table = new Table({
+    const tableOpts = {
       rows,
       // 表级边框全部 nil，由单元格边框控制
       borders: BorderHelper.tableNoneBorders(),
       width: { size: 100, type: WidthType.PERCENTAGE },
-    });
+    };
 
-    // 表格后的空段落，应用 space_after
-    const afterPara = new Paragraph({
-      spacing: {
+    // 通过 tblPr spacing 设置表格后间距（而非空段落）
+    if (block.space_after) {
+      tableOpts.spacing = {
         after: SpacingHelper.toTwips(block.space_after, 0),
-      },
-      children: [],
-    });
+      };
+    }
 
-    return [table, afterPara];
+    return new Table(tableOpts);
   }
 }
 
