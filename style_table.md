@@ -34,7 +34,7 @@
 
 ## Block 类型
 
-支持8种 Block 类型：
+支持9种 Block 类型：
 
 | 类型 | 说明 | 职责 |
 |------|------|------|
@@ -42,6 +42,7 @@
 | `toc` | 目录 | 收集 heading 结构生成目录 |
 | `text` | 文本段落 | 普通段落内容 |
 | `code` | 代码块 | 预格式化代码（等宽字体+背景色+保留换行） |
+| `formula` | 公式 | LaTeX 公式渲染为 Word 原生数学公式（OMML） |
 | `image` | 图片 | 插入图片 |
 | `table` | 表格 | 插入表格 |
 | `page-break` | 行内断点 | 分页符 / 分栏符 / 行内换行 |
@@ -441,6 +442,66 @@
 {"type": "section-break", "break_type": "continuous"}
 {"type": "section-break", "break_type": "evenPage"}
 {"type": "section-break", "break_type": "oddPage"}
+```
+
+---
+
+## formula 类型
+
+公式块，将 LaTeX 源码渲染为 Word 原生数学公式（OMML），可在 Word 中直接编辑。
+
+### 基本结构
+
+```json
+{
+  "type": "formula",
+  "style": "公式",
+  "latex": "E = mc^2",
+  "display": true
+}
+```
+
+### 字段说明
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `type` | string | 是 | 固定值 `"formula"` |
+| `style` | string | **是** | **必须在 style.json 中定义的样式名称** |
+| `latex` | string | 是 | LaTeX 公式源码 |
+| `display` | boolean | 否 | `true`=块级公式（居中，默认）；`false`=行内公式 |
+
+### 严格模式说明
+
+- `style` 字段**必须显式指定**，必须在 `style.json` 中存在
+- `latex` 字段为 LaTeX 源码，使用 KaTeX 渲染为 MathML，再转换为 Word OMML
+- `display` 为 `true` 时，公式独占一行并居中；为 `false` 时，公式作为行内元素
+- 若 LaTeX 语法错误，文档中会保留占位文本 `[公式错误: ...]`
+
+### 推荐样式配置
+
+```json
+{
+  "公式": {
+    "font_name": "Times New Roman",
+    "font_name_east_asia": "宋体",
+    "font_size": 12,
+    "alignment": "center",
+    "line_spacing": {"units": "line", "value": 1.5},
+    "space_before": {"units": "pt", "value": 6},
+    "space_after": {"units": "pt", "value": 6}
+  }
+}
+```
+
+### 示例
+
+```json
+{
+  "type": "formula",
+  "style": "公式",
+  "latex": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+  "display": true
+}
 ```
 
 ---
