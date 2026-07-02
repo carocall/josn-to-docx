@@ -50,15 +50,15 @@
   "TOC 1": {
     "font_name": "Times New Roman",
     "font_name_east_asia": "黑体",
-    "font_size": 14,
-    "line_spacing": {"units": "pt", "value": 18},
+    "font_size": 12,
+    "line_spacing": {"units": "pt", "value": 0},
     "first_line_indent": {"units": "chars", "value": 2}
   },
   "TOC 2": {
     "font_name": "Times New Roman",
     "font_name_east_asia": "宋体",
     "font_size": 12,
-    "line_spacing": {"units": "pt", "value": 22},
+    "line_spacing": {"units": "pt", "value": 0},
     "first_line_indent": {"units": "chars", "value": 2},
     "left_indent": {"units": "chars", "value": 2}
   },
