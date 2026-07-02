@@ -186,7 +186,7 @@ node core/converter.js template/content.json template/style.json template/output
     "font_name": "Times New Roman",
     "font_name_east_asia": "宋体",
     "font_size": 12,
-    "firstLineChars": 200
+    "first_line_indent": {"units": "chars", "value": 2}
   },
   "inner_formula": {
     "font_name": "Times New Roman",

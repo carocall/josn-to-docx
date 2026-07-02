@@ -1,18 +1,16 @@
 "use strict";
 /**
  * 样式引擎 - 严格模式：样式必须存在，否则报错
- * 对应 Python 版 core/styles.py
  *
  * 职责：
  *   1. 加载并校验 style.json
  *   2. 将每个样式定义转换为 docx.js 的 StyleForParagraph 实例
  *   3. 提供 getStyle / requireStyle / hasStyle 查询接口（严格模式）
  *
- * 关于 firstLineChars：
- *   docx.js 的 Indent 类不支持 w:firstLineChars 属性（只支持 w:firstLine）。
- *   为与 Python 原版行为一致（按字符数动态缩进，Word 根据字号/字体自适应），
- *   这里通过自定义 XmlComponent 直接写 <w:ind w:firstLineChars="N"/>，
- *   并通过 importedStyles（而非 paragraphStyles）注入预构建的 StyleForParagraph。
+ * 关于缩进属性：
+ *   - left_indent / right_indent: 左缩进 / 右缩进（文本之前/之后）
+ *   - first_line_indent / hanging_indent: 首行缩进 / 悬挂缩进
+ *   所有缩进属性支持两种单位：cm（厘米）或 chars（字符）
  *
  * 关于 background_color：
  *   docx.js 的段落样式 paragraph 配置不支持 shading（背景色），
@@ -27,10 +25,11 @@ const {
   StyleForParagraph,
 } = require("docx");
 const { SpacingHelper, TWIPS_PER_PT } = require("./utils/spacing");
-const { FirstLineCharsIndent } = require("./utils/indent");
+const { IndentComponent } = require("./utils/indent");
 
 const TWIPS_PER_CM = 1440 / 2.54; // 1 英寸 = 1440 twips，1 cm = 1440/2.54
 const LINE_SINGLE = 240; // docx.js 行距倍数：240 = 单倍
+const CHARS_PER_PT = 100; // w:firstLineChars: 200 = 2 个字符，即 100 = 1 字符
 
 const ALIGN_MAP = {
   left: AlignmentType.LEFT,
@@ -130,12 +129,12 @@ class StyleEngine {
         paragraph: paragraphOpts,
       });
 
-      // 注入自定义 w:ind（支持 firstLineChars）
+      // 注入自定义 w:ind（支持 firstLineChars 等字符单位缩进）
       const indAttrs = this._buildIndentAttrs(props);
       if (Object.keys(indAttrs).length > 0) {
         const pp = this._findParagraphProperties(style);
         if (pp) {
-          pp.root.push(new FirstLineCharsIndent(indAttrs));
+          pp.root.push(new IndentComponent(indAttrs));
         }
       }
 
@@ -151,19 +150,69 @@ class StyleEngine {
   }
 
   /**
-   * 构建 w:ind 的属性集合，与 Python 版保持一致：
-   *   - firstLineChars -> w:firstLineChars="200"（按字符数缩进，Word 自适应）
-   *   - left_indent_cm -> w:left="twips"
-   * 两者同时存在时合并到同一个 w:ind 元素中。
+   * 构建 w:ind 的属性集合，支持四种缩进属性：
+   *
+   * 左缩进（文本之前）：
+   *   - left_indent: { value: number, units: "cm" | "chars" }
+   *
+   * 右缩进（文本之后）：
+   *   - right_indent: { value: number, units: "cm" | "chars" }
+   *
+   * 首行缩进：
+   *   - first_line_indent: { value: number, units: "cm" | "chars" }
+   *
+   * 悬挂缩进：
+   *   - hanging_indent: { value: number, units: "cm" | "chars" }
+   *
+   * 所有属性可同时存在，合并到同一个 w:ind 元素中。
    */
   _buildIndentAttrs(props) {
     const attrs = {};
-    if (props.firstLineChars) {
-      attrs["w:firstLineChars"] = String(parseInt(props.firstLineChars, 10));
+
+    // 左缩进（文本之前）
+    if (props.left_indent) {
+      const { value, units } = props.left_indent;
+      if (units === "chars") {
+        attrs["w:leftChars"] = String(parseInt(value * CHARS_PER_PT, 10));
+      } else {
+        // cm
+        attrs["w:left"] = String(Math.round(value * TWIPS_PER_CM));
+      }
     }
-    if (props.left_indent_cm != null) {
-      attrs["w:left"] = String(Math.round(props.left_indent_cm * TWIPS_PER_CM));
+
+    // 右缩进（文本之后）
+    if (props.right_indent) {
+      const { value, units } = props.right_indent;
+      if (units === "chars") {
+        attrs["w:rightChars"] = String(parseInt(value * CHARS_PER_PT, 10));
+      } else {
+        // cm
+        attrs["w:right"] = String(Math.round(value * TWIPS_PER_CM));
+      }
     }
+
+    // 首行缩进
+    if (props.first_line_indent) {
+      const { value, units } = props.first_line_indent;
+      if (units === "chars") {
+        attrs["w:firstLineChars"] = String(parseInt(value * CHARS_PER_PT, 10));
+      } else {
+        // cm
+        attrs["w:firstLine"] = String(Math.round(value * TWIPS_PER_CM));
+      }
+    }
+
+    // 悬挂缩进
+    if (props.hanging_indent) {
+      const { value, units } = props.hanging_indent;
+      if (units === "chars") {
+        attrs["w:hangingChars"] = String(parseInt(value * CHARS_PER_PT, 10));
+      } else {
+        // cm
+        attrs["w:hanging"] = String(Math.round(value * TWIPS_PER_CM));
+      }
+    }
+
     return attrs;
   }
 
@@ -208,8 +257,7 @@ class StyleEngine {
       }
     }
 
-    // 注意：firstLineChars 和 left_indent_cm 不在这里处理，
-    // 由 _buildIndentAttrs + FirstLineCharsIndent 注入（见 toDocxStyles）。
+    // 注意：缩进属性由 _buildIndentAttrs + IndentComponent 注入（见 toDocxStyles）。
 
     // outline_level（让 Word 识别为标题结构，用于目录生成）
     if (props.outline_level != null) {

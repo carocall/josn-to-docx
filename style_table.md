@@ -556,10 +556,6 @@
 - 功能：设置段前/段后间距
 - 格式：`{"units": "pt"|"line", "value": number}`
 
-#### firstLineChars
-- 功能：设置首行缩进的字符数
-- 单位：字符宽度的 1/100，200 表示缩进 2 个字符
-
 #### line_spacing
 - 功能：设置行间距
 - 格式：`{"units": "pt"|"line", "value": number}`
@@ -568,9 +564,33 @@
 - 功能：设置段落背景色（常用于代码块）
 - 取值：HEX 颜色值，不带 `#` 前缀（如 `"F5F5F5"`）
 
-#### left_indent_cm
-- 功能：设置左缩进（厘米）
-- 取值：数字，单位为厘米（如 `0.74` 表示 0.74 厘米）
+#### left_indent
+- 功能：设置左缩进（文本之前）
+- 格式：`{"units": "cm"|"chars", "value": number}`
+- 示例：
+  - `{"units": "cm", "value": 1.5}` — 左缩进 1.5 厘米
+  - `{"units": "chars", "value": 2}` — 左缩进 2 个字符
+
+#### right_indent
+- 功能：设置右缩进（文本之后）
+- 格式：`{"units": "cm"|"chars", "value": number}`
+- 示例：
+  - `{"units": "cm", "value": 1}` — 右缩进 1 厘米
+  - `{"units": "chars", "value": 2}` — 右缩进 2 个字符
+
+#### first_line_indent
+- 功能：设置首行缩进（特殊格式：首行缩进）
+- 格式：`{"units": "cm"|"chars", "value": number}`
+- 示例：
+  - `{"units": "chars", "value": 2}` — 首行缩进 2 个字符
+  - `{"units": "cm", "value": 0.74}` — 首行缩进 0.74 厘米
+
+#### hanging_indent
+- 功能：设置悬挂缩进（特殊格式：悬挂缩进）
+- 格式：`{"units": "cm"|"chars", "value": number}`
+- 示例：
+  - `{"units": "chars", "value": 2}` — 悬挂缩进 2 个字符
+  - `{"units": "cm", "value": 1}` — 悬挂缩进 1 厘米
 
 #### outline_level
 - 功能：设置标题的结构层级（让 Word 识别为标题，用于生成目录）
@@ -681,7 +701,9 @@
     "font_name": "Times New Roman",
     "font_name_east_asia": "宋体",
     "font_size": 12,
-    "firstLineChars": 200
+    "first_line_indent": {"units": "chars", "value": 2},
+    "left_indent": {"units": "chars", "value": 0},
+    "right_indent": {"units": "chars", "value": 0}
   },
   "目录一级": {
     "font_name": "Times New Roman",
@@ -721,7 +743,7 @@
     "font_size": 10.5,
     "background_color": "F5F5F5",
     "line_spacing": {"units": "pt", "value": 18},
-    "left_indent_cm": 0.74
+    "left_indent": {"units": "cm", "value": 0.74}
   }
 }
 ```
