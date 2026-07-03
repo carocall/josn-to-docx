@@ -244,6 +244,31 @@
         }
       ]
     },
+      {
+      "type": "text",
+      "style": "Normal",
+      "runs": [
+        {
+          "text": "这些东西可以用来引用文献，比如：在js后端框架中，express是一个非常优秀的框架"
+        },
+        {
+          "text": "[1]",
+          "superscript": true
+        },
+        {
+          "text": "。"
+        },        {
+          "text": "由于西发明了vue框架"
+        },
+        {
+          "text": "[2]",
+          "superscript": true
+        },
+        {
+          "text": "。"
+        }
+      ]
+    },
     {
       "type": "page-break"
     },
@@ -500,6 +525,32 @@
     {
       "type": "section-break",
       "break_type": "nextPage"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "style": "Heading 1",
+      "runs": [
+        {
+          "text": "7 参考文献"
+        }
+      ]
+    },{
+      "type": "text",
+      "style": "reference",
+      "runs": [
+        {
+          "text": "[1] Express.js. Express.js Official Documentation[EB/OL]. https://expressjs.com, 2023. "
+        }
+      ]
+    },{
+      "type": "text",
+      "style": "reference",
+      "runs": [
+        {
+          "text": "[2] Vue.js. Vue.js Official Guide[EB/OL]. https://vuejs.org, 2023. [citation:11] "
+        }
+      ]
     }
   ]
 }

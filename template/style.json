@@ -131,5 +131,12 @@
     "line_spacing": {"units": "line", "value": 1.5},
     "space_before": {"units": "pt", "value": 6},
     "space_after": {"units": "pt", "value": 6}
+  },
+    "reference": {
+    "font_name": "Times New Roman",
+    "font_name_east_asia": "宋体",
+    "font_size": 10,
+    "line_spacing": {"units": "line", "value": 1},
+    "first_line_indent": {"units": "chars", "value": 0}
   }
 }
