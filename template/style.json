@@ -7,6 +7,7 @@
     "bold": true,
     "outline_level": 0,
     "line_spacing": {"units": "line", "value": 1.5},
+    "first_line_indent": {"units": "chars", "value": 0},
     "space_before": {"units": "pt", "value": 6},
     "space_after": {"units": "pt", "value": 12}
   },
@@ -17,6 +18,7 @@
     "bold": true,
     "outline_level": 1,
     "line_spacing": {"units": "line", "value": 1.5},
+    "first_line_indent": {"units": "chars", "value": 0},
     "space_before": {"units": "pt", "value": 6},
     "space_after": {"units": "pt", "value": 10}
   },
@@ -27,6 +29,7 @@
     "bold": true,
     "outline_level": 2,
     "line_spacing": {"units": "line", "value": 1.5},
+    "first_line_indent": {"units": "chars", "value": 0},
     "space_before": {"units": "pt", "value": 6},
     "space_after": {"units": "pt", "value": 8}
   },
@@ -37,6 +40,7 @@
     "bold": true,
     "outline_level": 3,
     "line_spacing": {"units": "line", "value": 1.5},
+    "first_line_indent": {"units": "chars", "value": 0},
     "space_before": {"units": "pt", "value": 6},
     "space_after": {"units": "pt", "value": 6}
   },

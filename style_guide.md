@@ -128,15 +128,6 @@
 
 ---
 
-## 图片样式
-
-### width_cm
-- 功能：设置图片宽度（厘米）
-- 取值：数字，单位为厘米（如 `10` 表示 10 厘米）
-- 说明：图片会按此宽度等比缩放
-
----
-
 ## 推荐样式配置
 
 ### 正文
@@ -191,9 +182,10 @@
 {
   "Image": {
     "alignment": "center",
-    "width_cm": 10,
+    "line_spacing": {"units": "line", "value": 1},
     "space_before": {"units": "pt", "value": 12},
-    "space_after": {"units": "pt", "value": 6}
+    "space_after": {"units": "pt", "value": 6},
+    "first_line_indent": {"units": "chars", "value": 0}
   }
 }
 ```
