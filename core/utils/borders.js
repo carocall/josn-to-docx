@@ -9,11 +9,20 @@
  *      - none     : 全无
  *      - grid     : 四边全有
  *      - three_line: 顶/底 + 表头底线（三线表）
+ *
+ * 三线表线宽（size 单位为 1/8 磅）：
+ *   - 顶线 / 底线      : 1.5pt（size = 12）
+ *   - 表头底线        : 0.5pt（size = 4）
  */
 
 const { BorderStyle } = require("docx");
 
-const SINGLE = { style: BorderStyle.SINGLE, size: 12, color: "000000" };
+// 线宽档位：size 为 1/8 磅
+const LINE_15PT = { style: BorderStyle.SINGLE, size: 12, color: "000000" }; // 1.5pt
+const LINE_05PT = { style: BorderStyle.SINGLE, size: 4, color: "000000" }; // 0.5pt
+
+// 兼容旧命名：SINGLE 默认即 1.5pt（grid 边框沿用此宽度）
+const SINGLE = LINE_15PT;
 const NONE = { style: BorderStyle.NONE };
 
 /**
@@ -31,13 +40,14 @@ function cellBorders(borderStyle, rowIndex, isLast, totalRows) {
     return { top: SINGLE, bottom: SINGLE, left: SINGLE, right: SINGLE };
   }
   // three_line（默认）
+  //   顶线 / 底线 = 1.5pt，表头底线 = 0.5pt
   const b = { top: NONE, bottom: NONE, left: NONE, right: NONE };
   if (rowIndex === 0) {
-    b.top = SINGLE;
-    b.bottom = SINGLE;
+    b.top = LINE_15PT; // 顶线 1.5pt
+    b.bottom = LINE_05PT; // 表头底线 0.5pt
   }
   if (totalRows >= 2 && isLast) {
-    b.bottom = SINGLE;
+    b.bottom = LINE_15PT; // 底线 1.5pt
   }
   return b;
 }
@@ -54,4 +64,10 @@ function tableNoneBorders() {
   };
 }
 
-module.exports = { BorderHelper: { cellBorders, tableNoneBorders }, SINGLE, NONE };
+module.exports = {
+  BorderHelper: { cellBorders, tableNoneBorders },
+  SINGLE,
+  LINE_15PT,
+  LINE_05PT,
+  NONE,
+};
